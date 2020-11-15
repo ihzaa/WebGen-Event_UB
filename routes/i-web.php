@@ -28,6 +28,9 @@ Route::name('admin_')->middleware('auth:admin')->prefix('4dm1n')->group(function
     Route::get('logout', [adminAuth::class, 'logout'])->name('logout');
 
     Route::get('kelola/event', [EventController::class, 'index'])->name('kelola_event_index');
+
+    Route::get('event/all', [EventController::class, 'getAllEventWithCategoryName'])->name('get_all_event');
+
     Route::get('category/all/w/eventcount', [CategoryController::class, 'getAllVategoryWithCountEvent'])->name('get_all_category_with_event_count');
     Route::post('category/add', [CategoryController::class, 'insert'])->name('tambah_category');
     Route::post('category/edit/{id}', [CategoryController::class, 'edit'])->name('edit_category');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -11,5 +12,9 @@ class EventController extends Controller
     {
         return view('admin.kelolaEvent');
     }
-    
+
+    public function getAllEventWithCategoryName()
+    {
+        return DB::select(DB::raw('select `events`.`id`,`events`.`title`,`events`.`poster`,`events`.`date`, ( select `categoris`.`name` from `categoris` where `categoris`.`id` = `events`.`categori_id`) as `category_name` from `events`'));
+    }
 }
