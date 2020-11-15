@@ -11,13 +11,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Admin {{config('app.name')}} | @yield('title')</title>
-
+    @yield('css_before')
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    @yield('css_after')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -43,6 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <ol class="breadcrumb float-sm-right">
                                 {{-- <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">Starter Page</li> --}}
+                                <li class="breadcrumb-item"><a href="{{route('admin_home')}}">Home</a></li>
                                 @yield('breadcrumb')
                             </ol>
                         </div><!-- /.col -->
@@ -75,13 +77,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
-
+    @yield('js_before')
     <!-- jQuery -->
     <script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
+    @yield('js_after')
 </body>
 
 </html>

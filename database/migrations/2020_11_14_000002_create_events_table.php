@@ -19,10 +19,10 @@ class CreateEventsTable extends Migration
             $table->string('poster');
             $table->longText('desc');
             $table->dateTime('date');
-            $table->unsignedBigInteger('categoris_id');
+            $table->unsignedBigInteger('categori_id');
             $table->timestamps();
 
-            $table->foreign('categoris_id')->on('categoris')->references('id');
+            $table->foreign('categori_id')->on('categoris')->references('id');
         });
     }
 
