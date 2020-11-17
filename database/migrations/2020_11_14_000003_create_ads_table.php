@@ -17,7 +17,6 @@ class CreateAdsTable extends Migration
             $table->id();
             $table->string('image');
             $table->longText('desc');
-            $table->integer('counter');
             $table->timestamps();
         });
     }
