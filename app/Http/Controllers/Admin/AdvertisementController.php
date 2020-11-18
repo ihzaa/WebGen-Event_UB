@@ -82,9 +82,11 @@ class AdvertisementController extends Controller
      * @param  \App\Models\advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function edit(ad $advertisement)
+    public function edit(ad $advertisement, $id)
     {
         //
+        $data = ad::find($id);
+        return view('admin/Advertisement/Edit', compact('data'));
     }
 
     /**
@@ -94,9 +96,30 @@ class AdvertisementController extends Controller
      * @param  \App\Models\advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ad $advertisement)
+    public function update(Request $request, ad $advertisement, $id)
     {
         //
+        $this->validate($request, [
+            'image' => 'image|mimes:jpeg,png,jfif,svg,jpg|max:256',
+            'desc' => 'required'
+        ]);
+
+        $data = ad::find($id);
+        $data->desc = $request->desc;
+
+
+        if ($request->file('image') != "") {
+            File::delete($data->image);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $location = 'images/advertisement';
+            $nameUpload = $data->id . 'thumbnail.' . $extension;
+            $request->file('image')->move('assets/' . $location, $nameUpload);
+            $filepath = 'assets/' . $location . '/' . $nameUpload;
+            $data->image = $filepath;
+        }
+
+        $data->save();
+        return redirect(route('admin_advertisement_index'))->with('sukses_edit', 'Greate! Product created successfully.');
     }
 
     /**
@@ -105,8 +128,12 @@ class AdvertisementController extends Controller
      * @param  \App\Models\advertisement  $advertisement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ad $advertisement)
+    public function destroy(ad $advertisement, $id)
     {
         //
+        $data = ad::find($id);
+        ad::destroy($data->id);
+        File::delete($data->image);
+        return redirect(route('admin_advertisement_index'))->with('sukses_delete', 'Greate! Product created successfully.');
     }
 }
