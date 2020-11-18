@@ -18,6 +18,12 @@
             user-select: none;
         }
 
+        /* 
+        i {
+            width: 34px;
+            height: 30px;
+        } */
+
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
@@ -38,8 +44,7 @@
     @include('user.template.footer')
 
     @yield('js_before')
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <script src="{{asset('user/js/bootstrap.bundle.min.js')}}"></script>
     @yield('js_after')
