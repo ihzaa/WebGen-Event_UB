@@ -65,8 +65,10 @@
                 <div class="card-tools">
                     <!-- Buttons, labels, and many other things can be placed here! -->
                     <!-- Here is a label for example -->
-                    <button class="btn btn-sm btn-primary" id="btn_trigger_event"><i class="fas fa-plus"></i> Tambah
-                        Event</button>
+                    <a class="btn btn-sm btn-primary" id="btn_trigger_event"
+                        href="{{route('admin_tambah_event_get')}}"><i class="fas fa-plus"></i>
+                        Tambah
+                        Event</a>
                 </div>
             </div>
             <!-- /.card-header -->
@@ -149,8 +151,9 @@
     const URL = {getCat : "{{route('admin_get_all_category_with_event_count')}}",
                 insertCar : "{{route('admin_tambah_category')}}",
                 editCat : "{{route('admin_edit_category',['id'=>'__asd'])}}",
-                deleteCat : "{{route('admin_delete_category',['id'=>'__asd'])}}",
-                getEvent : "{{route('admin_get_all_event')}}"
+                deleteCat : "{{route('admin_delete_category')}}",
+                getEvent : "{{route('admin_get_all_event')}}",
+                delEvent : "{{route('admin_delete_event')}}"
                 }
 </script>
 <script src="{{asset('admin/dist/js/pages/kelolaEventCategory.js')}}"></script>

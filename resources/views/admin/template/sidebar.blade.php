@@ -33,7 +33,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('admin_kelola_event_index')}}" class="nav-link {{request()->is('*kelola/event*') ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-dragon"></i>
+                        <i class="nav-icon far fa-calendar-check"></i>
                         <p>
                             Kelola Event
                             {{-- <span class="right badge badge-danger">New</span> --}}
@@ -42,7 +42,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('admin_advertisement_index')}}" class="nav-link {{request()->is('*kelolaAdvertisement/*') ? 'active' : ''}}">
-                        <i class="nav-icon fas fa-dragon"></i>
+                        <i class="nav-icon fas fa-ad"></i>
                         <p>
                             Kelola Advertisement
                             {{-- <span class="right badge badge-danger">New</span> --}}

@@ -37,7 +37,9 @@ const Event = {
                     <td class="text-center">
                         <button class="btn btn-sm btn-danger btn_delete_event" data-id="${
                             el.id
-                        }"><i class="fas fa-trash"></i></button>
+                        }" data-name="${
+                el.title
+            }"><i class="fas fa-trash"></i></button>
                         <button class="btn btn-sm btn-info btn_edit_event" data-id="${
                             el.id
                         }"><i class="fas fa-pencil-alt"></i></button>
@@ -47,9 +49,67 @@ const Event = {
         });
         this.tbody.innerHTML = innerBody;
         this.hideLoading();
+
+        this._tabel = $("#tabelevent").DataTable({
+            paging: true,
+            lengthChange: true,
+            searching: true,
+            ordering: true,
+            info: true,
+            autoWidth: true,
+            responsive: true,
+        });
+    },
+    btnDeleteClick(data) {
+        this._data = data;
+        Swal.fire({
+            title: `Yakin ingin menghapus event ${this._data.name}?`,
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: `Ya, Hapus!`,
+            cancelButtonText: `Batal!`,
+        }).then((result) => {
+            if (result.value) {
+                this.showLoading();
+                this.delete();
+            }
+        });
+    },
+    delete() {
+        let token = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content");
+        fetch(URL.delEvent, {
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": token,
+            },
+            method: "post",
+            body: JSON.stringify({ id: this._data.id }),
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                this.reinit(data);
+                Swal.fire({
+                    icon: "success",
+                    title: "Berhasil!",
+                    text: "Event Berhasil Dihapus.",
+                });
+            })
+            .catch((err) => alert("terjadi error :" + err));
+    },
+    reinit(data) {
+        this._tabel.clear().destroy();
+        this.render(data);
     },
 };
 
 $(document).ready(() => {
     Event.init();
+    $(document).on("click", ".btn_delete_event", function () {
+        Event.btnDeleteClick({
+            id: $(this).data("id"),
+            name: $(this).data("name"),
+        });
+    });
 });

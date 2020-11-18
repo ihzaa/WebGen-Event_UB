@@ -28,8 +28,10 @@ Route::name('admin_')->middleware('auth:admin')->prefix('4dm1n')->group(function
     Route::get('logout', [adminAuth::class, 'logout'])->name('logout');
 
     Route::get('kelola/event', [EventController::class, 'index'])->name('kelola_event_index');
+    Route::view('kelola/event/tambah', 'admin/tambah-edit_event')->name('tambah_event_get');
 
     Route::get('event/all', [EventController::class, 'getAllEventWithCategoryName'])->name('get_all_event');
+    Route::post('event/delete', [EventController::class, 'delete'])->name('delete_event');
 
     Route::get('category/all/w/eventcount', [CategoryController::class, 'getAllVategoryWithCountEvent'])->name('get_all_category_with_event_count');
     Route::post('category/add', [CategoryController::class, 'insert'])->name('tambah_category');

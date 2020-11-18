@@ -131,14 +131,29 @@ const category = {
             method: "post",
             body: JSON.stringify({ name: input_nama.val() }),
         })
-            .then((resp) => resp.json())
+            .then((resp) => {
+                if (resp.status == 222) {
+                    return "";
+                } else {
+                    return resp.json();
+                }
+            })
             .then((data) => {
-                this.reinit(data);
-                Swal.fire({
-                    icon: "success",
-                    title: "Berhasil!",
-                    text: "Kategori Berhasil Diedit.",
-                });
+                if (data == "") {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Maaf!",
+                        text: "Nama Kategori Sudah Ada.",
+                    });
+                    this.hideLoading();
+                } else {
+                    this.reinit(data);
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil!",
+                        text: "Kategori Berhasil Diedit.",
+                    });
+                }
             })
             .catch((err) => alert("terjadi error :" + err));
     },
@@ -161,9 +176,9 @@ const category = {
         let token = document
             .querySelector('meta[name="csrf-token"]')
             .getAttribute("content");
-        let tmpURL = URL.deleteCat;
-        tmpURL = tmpURL.replace("__asd", this._data.id);
-        fetch(tmpURL, {
+        // let tmpURL = URL.deleteCat;
+        // tmpURL = tmpURL.replace("__asd", this._data.id);
+        fetch(URL.deleteCat, {
             headers: {
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": token,
@@ -171,14 +186,30 @@ const category = {
             method: "post",
             body: JSON.stringify({ id: this._data.id }),
         })
-            .then((resp) => resp.json())
+            .then((resp) => {
+                if (resp.status == 234) {
+                    return "";
+                } else {
+                    return resp.json();
+                }
+            })
             .then((data) => {
-                this.reinit(data);
-                Swal.fire({
-                    icon: "success",
-                    title: "Berhasil!",
-                    text: "Kategori Berhasil Dihapus.",
-                });
+                if (data == "") {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Maaf!",
+                        text:
+                            "Kategori Tidak Dihapus Karna Masih Memiliki Event.",
+                    });
+                    this.hideLoading();
+                } else {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil!",
+                        text: "Kategori Berhasil Dihapus.",
+                    });
+                    this.reinit(data);
+                }
             })
             .catch((err) => alert("terjadi error :" + err));
     },

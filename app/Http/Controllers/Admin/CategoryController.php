@@ -31,13 +31,23 @@ class CategoryController extends Controller
 
     public function edit($id, Request $request)
     {
-        categori::find($id)->update(["name" => $request->name]);
-        return response()->json($this->getAllVategoryWithCountEvent());
+        $isExist =  categori::where('name', $request->name)->first();
+        if ($isExist == "") {
+            categori::find($id)->update(["name" => $request->name]);
+            return response()->json($this->getAllVategoryWithCountEvent());
+        } else {
+            return response()->json([], 222);
+        }
     }
 
     public function delete(Request $request)
     {
-        categori::find($request->id)->delete();
-        return response()->json($this->getAllVategoryWithCountEvent());
+        $count = categori::whereId($request->id)->withCount('event')->first();
+        if ($count->event_count == 0) {
+            categori::find($request->id)->delete();
+            return response()->json($this->getAllVategoryWithCountEvent());
+        } else {
+            return response()->json([], 234);
+        }
     }
 }
