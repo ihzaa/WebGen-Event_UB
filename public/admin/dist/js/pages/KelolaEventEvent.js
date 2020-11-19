@@ -31,7 +31,7 @@ const Event = {
                 <tr>
                     <td>${i++}</td>
                     <td>${el.title}</td>
-                    <td>${el.poster}</td>
+                    <td><img src="${storagePath}/${el.poster}"></td>
                     <td>${moment(el.date).format("dddd, D MMM YYYY")}</td>
                     <td>${el.category_name}</td>
                     <td class="text-center">
@@ -111,5 +111,16 @@ $(document).ready(() => {
             id: $(this).data("id"),
             name: $(this).data("name"),
         });
+    });
+    $(document).on("click", "#btn_trigger_event", function () {
+        if (category._length == 0) {
+            event.preventDefault();
+            Swal.fire({
+                icon: "error",
+                title: "Maaf!",
+                text: "Untuk Menambahkan Event Minimal Terdapat 1 Kategori.",
+            });
+            return;
+        }
     });
 });

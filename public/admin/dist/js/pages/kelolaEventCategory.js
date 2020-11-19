@@ -9,7 +9,9 @@ const category = {
     _data: "",
     _condition: "",
     tbody: document.querySelector("#tabelkategori tbody"),
+    _length: 0,
     render(data) {
+        this._length = data.length;
         let innerBody = "";
         let i = 1;
         data.forEach((el) => {
@@ -188,13 +190,13 @@ const category = {
         })
             .then((resp) => {
                 if (resp.status == 234) {
-                    return "";
+                    return "stop";
                 } else {
                     return resp.json();
                 }
             })
             .then((data) => {
-                if (data == "") {
+                if (data == "stop") {
                     Swal.fire({
                         icon: "error",
                         title: "Maaf!",

@@ -155,6 +155,7 @@
                 getEvent : "{{route('admin_get_all_event')}}",
                 delEvent : "{{route('admin_delete_event')}}"
                 }
+    var storagePath = "{!! asset('event_poster') !!}";
 </script>
 <script src="{{asset('admin/dist/js/pages/kelolaEventCategory.js')}}"></script>
 <script src="{{asset('admin/dist/js/pages/kelolaEventEvent.js')}}"></script>

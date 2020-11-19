@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $count = categori::whereId($request->id)->withCount('event')->first();
         if ($count->event_count == 0) {
             categori::find($request->id)->delete();
-            return response()->json($this->getAllVategoryWithCountEvent());
+            return response()->json($this->getAllVategoryWithCountEvent(), 200);
         } else {
             return response()->json([], 234);
         }
