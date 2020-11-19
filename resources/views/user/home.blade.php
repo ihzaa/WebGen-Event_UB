@@ -62,7 +62,7 @@
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 <script>
-    const baseImgUrl = "{{asset('event_poster')}}";
+    const baseImgUrl = "{{asset('storage')}}";
     const URL = {allEvent: "{{route('user_get_all_event')}}",
                 getEventByCat: "{{route('user_get_event_by_cat_id',['ahaha'])}}"
                 }

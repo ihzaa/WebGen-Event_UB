@@ -26,7 +26,8 @@ class EventController extends Controller
     public function delete(Request $request)
     {
         $event = event::find($request->id);
-        Storage::delete('public/events_poster/' . $event->poster);
+        // Storage::delete('public/events_poster/' . $event->poster);
+        Storage::delete($event->poster);
         $event->delete();
         return $this->getAllEventWithCategoryName();
     }
@@ -59,10 +60,12 @@ class EventController extends Controller
         $event->poster = "abc";
         $event->date = Carbon::parse($request->date);
         $event->categori_id = $request->kategori;
-        $event->save();
+        // $event->save();
 
-        $posterpath = $request->file('poster')->storeAs('public/events_poster', $event->id . '.' . $request->file('poster')->extension());
-        $event->poster = $event->id . '.' . $request->file('poster')->extension();
+        // $posterpath = $request->file('poster')->storeAs('public/events_poster', $event->id . '.' . $request->file('poster')->extension());
+        // $event->poster = $event->id . '.' . $request->file('poster')->extension();
+        $posterpath = $request->file('poster')->store('public/events_poster');
+        $event->poster = $posterpath;
         $event->save();
 
         return redirect(route('admin_kelola_event_index'))->with('icon', 'success')->with('title', 'Berhasil!')->with('message', 'Berhasil menambahkan event.');
@@ -93,9 +96,12 @@ class EventController extends Controller
         $fotoAdaKah = $request->has('poster') ? true : false;
         $event = event::find($id);
         if ($fotoAdaKah) {
-            Storage::delete('public/events_poster/' . $event->poster);
-            $posterpath = $request->file('poster')->storeAs('public/events_poster', $id . '.' . $request->file('poster')->extension());
-            $event->poster = $id . '.' . $request->file('poster')->extension();
+            // Storage::delete('public/events_poster/' . $event->poster);
+            // $posterpath = $request->file('poster')->storeAs('public/events_poster', $id . '.' . $request->file('poster')->extension());
+            // $event->poster = $id . '.' . $request->file('poster')->extension();
+            Storage::delete($event->poster);
+            $posterpath = $request->file('poster')->store('public/events_poster');
+            $event->poster = $posterpath;
         }
         $event->title = $request->title;
         $event->desc = $request->desc;

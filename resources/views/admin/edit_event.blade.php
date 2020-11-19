@@ -38,7 +38,7 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-4">
-                            <img id="blah" class="img-fluid" src="{{asset('event_poster/'.$data['event']->poster)}}"
+                            <img id="blah" class="img-fluid" src="{{asset('storage/'.$data['event']->poster)}}"
                                 alt="your image" />
                         </div>
                         <div class="col-md-8 d-flex">

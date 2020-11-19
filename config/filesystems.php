@@ -79,8 +79,8 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
-        public_path('event_poster') => storage_path('app/public/events_poster'),
+        public_path('storage') => storage_path('app'),
+        // public_path('event_poster') => storage_path('app/public/events_poster'),
     ],
 
 ];

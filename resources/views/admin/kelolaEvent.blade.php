@@ -167,7 +167,7 @@
                 delEvent : "{{route('admin_delete_event')}}",
                 editEvent : "{{route('admin_edit_event_get',['id'=>'astaga'])}}"
                 }
-    var storagePath = "{!! asset('event_poster') !!}";
+    var storagePath = "{!! asset('storage') !!}";
 </script>
 <script src="{{asset('admin/dist/js/pages/kelolaEventCategory.js')}}"></script>
 <script src="{{asset('admin/dist/js/pages/kelolaEventEvent.js')}}"></script>
