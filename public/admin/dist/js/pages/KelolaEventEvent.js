@@ -26,13 +26,22 @@ const Event = {
     render(data) {
         let innerBody = "";
         let i = 1;
+        const dateNow = moment();
         data.forEach((el) => {
+            tmpUrl = URL.editEvent;
+            tmpUrl = tmpUrl.replace("astaga", el.id);
+            let date = moment(el.date, "YYYY-M-D HH:mm:ss").format(
+                "dddd, D MMM YYYY"
+            );
+
             innerBody += `
-                <tr>
+                <tr ${dateNow.isAfter(el.date) ? 'class="bg-dark"':''}>
                     <td>${i++}</td>
                     <td>${el.title}</td>
-                    <td><img src="${storagePath}/${el.poster}"></td>
-                    <td>${moment(el.date).format("dddd, D MMM YYYY")}</td>
+                    <td><img class="lazyload img-fluid" data-src="${storagePath}/${
+                el.poster
+            }"></td>
+                    <td>${date}</td>
                     <td>${el.category_name}</td>
                     <td class="text-center">
                         <button class="btn btn-sm btn-danger btn_delete_event" data-id="${
@@ -40,14 +49,14 @@ const Event = {
                         }" data-name="${
                 el.title
             }"><i class="fas fa-trash"></i></button>
-                        <button class="btn btn-sm btn-info btn_edit_event" data-id="${
-                            el.id
-                        }"><i class="fas fa-pencil-alt"></i></button>
+                        <a class="btn btn-sm btn-info btn_edit_event" href="${tmpUrl}"><i class="fas fa-pencil-alt"></i></a>
                     </td>
                   </tr>
                 `;
         });
         this.tbody.innerHTML = innerBody;
+        let images = document.querySelectorAll(".lazyload");
+        lazyload(images);
         this.hideLoading();
 
         this._tabel = $("#tabelevent").DataTable({

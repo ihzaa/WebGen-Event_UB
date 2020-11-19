@@ -98,6 +98,16 @@
                     </tfoot>
                 </table>
             </div>
+            <div class="card-footer">
+                Keterangan:
+                <div class="row">
+                    <div class="col-sm-6"><i class="fas fa-square text-dark"></i> : Waktu Event
+                        Sudah Berlalu</div>
+                    <div class="col-sm-6"><i class="far fa-square text-dark"></i> : Waktu Event
+                        Masih Belum Terlewat</div>
+
+                </div>
+            </div>
             <!-- /.card-body -->
             <div id="eventloading" class="overlay dark">
                 <i class="fas fa-2x fa-sync-alt fa-spin"></i>
@@ -147,17 +157,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js"
     integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ=="
     crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 <script>
     const URL = {getCat : "{{route('admin_get_all_category_with_event_count')}}",
                 insertCar : "{{route('admin_tambah_category')}}",
                 editCat : "{{route('admin_edit_category',['id'=>'__asd'])}}",
                 deleteCat : "{{route('admin_delete_category')}}",
                 getEvent : "{{route('admin_get_all_event')}}",
-                delEvent : "{{route('admin_delete_event')}}"
+                delEvent : "{{route('admin_delete_event')}}",
+                editEvent : "{{route('admin_edit_event_get',['id'=>'astaga'])}}"
                 }
     var storagePath = "{!! asset('event_poster') !!}";
 </script>
 <script src="{{asset('admin/dist/js/pages/kelolaEventCategory.js')}}"></script>
 <script src="{{asset('admin/dist/js/pages/kelolaEventEvent.js')}}"></script>
-
+@if(Session::get('icon'))
+<script>
+    Swal.fire({
+            icon: "{{Session::get('icon')}}",
+            title: "{{Session::get('title')}}",
+            text: "{{Session::get('message')}}",
+        });
+</script>
+@endif
 @endsection

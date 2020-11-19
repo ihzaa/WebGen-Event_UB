@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('user_')->group(function () {
     Route::get('/', [HomeUserController::class, 'index'])->name('home');
+    Route::get('/get/all/event', [HomeUserController::class, 'getAllEvent'])->name('get_all_event');
+    Route::get('/get/event/by/cat/{id}', [HomeUserController::class, 'getEventByCategoryId'])->name('get_event_by_cat_id');
 });
 
 
@@ -30,7 +32,8 @@ Route::name('admin_')->middleware('auth:admin')->prefix('4dm1n')->group(function
     Route::get('kelola/event', [EventController::class, 'index'])->name('kelola_event_index');
     Route::get('kelola/event/tambah', [EventController::class, 'tambahGet'])->name('tambah_event_get');
     Route::post('kelola/event/tambah', [EventController::class, 'tambahPost'])->name('tambah_event_post');
-
+    Route::get('kelola/event/edit/{id}', [EventController::class, 'editGet'])->name('edit_event_get');
+    Route::post('kelola/event/edit/{id}', [EventController::class, 'editPost'])->name('edit_event_post');
 
     Route::get('event/all', [EventController::class, 'getAllEventWithCategoryName'])->name('get_all_event');
     Route::post('event/delete', [EventController::class, 'delete'])->name('delete_event');

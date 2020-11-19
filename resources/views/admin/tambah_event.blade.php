@@ -96,15 +96,9 @@
                             echo old('desc')
                         @endphp
                         @else
-                        <b>Dekripsi Event</b>(Anda Dapat Menambah atau Menghapus Keterangan Sesuai dengan yang Anda Inginkan)
-                        <br>
-                        <br>
-                        <br>
-                        <b>Lokasi : -</b>
-                        <br>
-                        <br>
-                        <br>
-                        <b>Link Pendaftaran: -</b>
+                        <b>#</b>Anda Dapat Menambah atau Menghapus Keterangan Sesuai dengan yang Anda Inginkan</p><p><b>Dekripsi :</b></p><p><b><br></b></p><p>
+                            <b>Lokasi :&nbsp;</b></p><p><br>
+                            <b>Link Pendaftaran :&nbsp;</b>
                         @endif
                     </textarea>
                 </div>

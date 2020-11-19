@@ -65,6 +65,43 @@ class EventController extends Controller
         $event->poster = $event->id . '.' . $request->file('poster')->extension();
         $event->save();
 
-        return redirect(route('admin_kelola_event_index'));
+        return redirect(route('admin_kelola_event_index'))->with('icon', 'success')->with('title', 'Berhasil!')->with('message', 'Berhasil menambahkan event.');
+    }
+
+    public function editGet($id)
+    {
+        $data = array();
+        $data['event'] = event::find($id);
+        $data['cat'] = categori::pluck('name', 'id');
+        return view('admin.edit_event', compact('data'));
+    }
+
+    public function editPost($id, Request $request)
+    {
+        $messages = [
+            'title.required' => 'Nama Event Harus Diisi!',
+            'desc.required' => 'Deskripsi Event Harus Diisi!',
+        ];
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'desc' => 'required',
+            'poster' => 'image|max:256',
+            'date' => 'required',
+            'kategori' => 'required'
+        ], $messages);
+
+        $fotoAdaKah = $request->has('poster') ? true : false;
+        $event = event::find($id);
+        if ($fotoAdaKah) {
+            Storage::delete('public/events_poster/' . $event->poster);
+            $posterpath = $request->file('poster')->storeAs('public/events_poster', $id . '.' . $request->file('poster')->extension());
+            $event->poster = $id . '.' . $request->file('poster')->extension();
+        }
+        $event->title = $request->title;
+        $event->desc = $request->desc;
+        $event->date = Carbon::parse($request->date);
+        $event->categori_id = $request->kategori;
+        $event->save();
+        return redirect(route('admin_kelola_event_index'))->with('icon', 'success')->with('title', 'Berhasil!')->with('message', 'Berhasil mengubah event.');
     }
 }
