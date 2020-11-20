@@ -41,7 +41,9 @@ const Event = {
     render(data) {
         if (data == "") {
             return `
-                <div class="col-md-12 text-center mb-2"><h3>Maaf, Tidak ada event dengan kategori ${$("#seachByCat  option:selected").text()}.</h3></div>
+                <div class="col-md-12 text-center mb-2"><h3>Maaf, Tidak ada event dengan kategori ${$(
+                    "#seachByCat  option:selected"
+                ).text()}.</h3></div>
             `;
         }
         var html = "";
@@ -56,7 +58,9 @@ const Event = {
                         <p class="card-text">${element.title}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Detail</button>
+                                <button type="button" data-ev="${
+                                    element.id
+                                }" class="btn btn-sm btn-outline-secondary btn_detail">Detail</button>
                             </div>
                             <small class="text-muted" id="tgl">
                                 <i class="far fa-calendar-alt"></i>
@@ -93,11 +97,32 @@ const Event = {
             })
             .catch((err) => console.log(err));
     },
+    openModalDetail(id) {
+        $("#page_loader").addClass("d-flex");
+        fetch(URL.getEventById.replace("nungguin_ya?", id))
+            .then((resp) => resp.json())
+            .then((data) => {
+                $("#event_poster").attr("src", baseImgUrl + "/" + data.poster);
+                $("#event_title").html(data.title);
+                $("#event_date").html(
+                    moment(data.date, "YYYY-M-D HH:mm:ss").format(
+                        "dddd, D MMM YYYY HH:mm"
+                    )
+                );
+                $("#event_cat").html(data.category);
+                $("#event_desc").html(data.desc);
+                $("#page_loader").removeClass("d-flex");
+                $("#modal_detail").modal("show");
+            });
+    },
 };
 
 $(document).ready(function () {
     Event.init();
     $("#seachByCat").on("change", function () {
         Event.seachByCat($(this).val());
+    });
+    $(document).on("click", ".btn_detail", function () {
+        Event.openModalDetail($(this).data("ev"));
     });
 });

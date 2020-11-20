@@ -64,7 +64,8 @@
 <script>
     const baseImgUrl = "{{asset('storage')}}";
     const URL = {allEvent: "{{route('user_get_all_event')}}",
-                getEventByCat: "{{route('user_get_event_by_cat_id',['ahaha'])}}"
+                getEventByCat: "{{route('user_get_event_by_cat_id',['ahaha'])}}",
+                getEventById: "{{route('user_get_event_by_id',['nungguin_ya?'])}}"
                 }
 </script>
 <script src="{{asset('user/js/event.js')}}"></script>
