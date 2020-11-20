@@ -53,7 +53,7 @@ const Event = {
                 <div class="card mb-4 shadow-sm">
                     <img class="img-responsive poster" data-src="${baseImgUrl}/${
                 element.poster
-            }" style="object-fit: cover !important;" alt="">
+            }" style="object-fit: cover !important;max-height:200px;" alt="">
                     <div class="card-body">
                         <p class="card-text">${element.title}</p>
                         <div class="d-flex justify-content-between align-items-center">

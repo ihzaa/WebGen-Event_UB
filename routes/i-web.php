@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController as adminAuth;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\User\AdsController;
 use App\Http\Controllers\User\HomeUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::name('user_')->group(function () {
     Route::get('/get/all/event', [HomeUserController::class, 'getAllEvent'])->name('get_all_event');
     Route::get('/get/event/by/cat/{id}', [HomeUserController::class, 'getEventByCategoryId'])->name('get_event_by_cat_id');
     Route::get('/get/event/by/{id}', [HomeUserController::class, 'getEventById'])->name('get_event_by_id');
+    Route::get('/get/latest/ad', [AdsController::class, 'getLatesAd'])->name('get_lates_ad');
 });
 
 

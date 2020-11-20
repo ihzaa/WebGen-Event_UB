@@ -67,8 +67,15 @@
         max-height: 100px;
         object-fit: cover;
     }
+
+    .ads {
+        background-color: rgba(0, 0, 0, .05);
+
+    }
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css" integrity="sha512-QmxybGIvkSI8+CGxkt5JAcGOKIzHDqBMs/hdemwisj4EeGLMXxCm9h8YgoCwIvndnuN1NdZxT4pdsesLXSaKaA==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css"
+    integrity="sha512-QmxybGIvkSI8+CGxkt5JAcGOKIzHDqBMs/hdemwisj4EeGLMXxCm9h8YgoCwIvndnuN1NdZxT4pdsesLXSaKaA=="
+    crossorigin="anonymous" />
 @endsection
 
 @section('main')
@@ -80,21 +87,20 @@
             entirely.</p>
         <!-- advertisement -->
         <div class="d-flex justify-content-center">
-            <a style="color: white; font-size:8px;" href="#">
-                <div class="justify-content-center card iklan" style="width: 18rem;">
+            {{-- <a style="color: white; font-size:8px;height: 100px;width: " href="#"> --}}
+            <div class="col-md-8">
+                <div class="card ads" style="display: none;">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-5">
-                                <img src="{{asset('assets/images/advertisement/5thumbnail.jfif')}}" class="img-fluid rounded float-left" alt="...">
+                                <img src="" class="img-fluid rounded float-left" alt="ads_poster" id="ads_poster">
                             </div>
-                            <div class="col-md-7">
-                                <h5 class="card-title text-left">Card title</h5>
-                                <p class="card-text text-left">ld on the card title and make up the bulk of the card's content.</p>
-                            </div>
+                            <div class="col-md-7" id="ads_desc"></div>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
+            {{-- </a> --}}
         </div>
         <!-- akhir advertisement -->
     </div>
@@ -127,20 +133,30 @@
 @endsection
 
 @section('js_after')
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 <script src="{{asset('user/js/select2.min.js')}}"></script>
 <script src="{{asset('user/js/home.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js" integrity="sha512-1zzZ0ynR2KXnFskJ1C2s+7TIEewmkB2y+5o/+ahF7mwNj9n3PnzARpqalvtjSbUETwx6yuxP5AJXZCpnjEJkQw==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js" integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"
+    integrity="sha512-1zzZ0ynR2KXnFskJ1C2s+7TIEewmkB2y+5o/+ahF7mwNj9n3PnzARpqalvtjSbUETwx6yuxP5AJXZCpnjEJkQw=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js"
+    integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ=="
+    crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 <script>
     const baseImgUrl = "{{asset('storage')}}";
+    const baseImgUrlAds = "{{asset('')}}";
     const URL = {
         allEvent: "{{route('user_get_all_event')}}",
         getEventByCat: "{{route('user_get_event_by_cat_id',['ahaha'])}}",
-        getEventById: "{{route('user_get_event_by_id',['nungguin_ya?'])}}"
+        getEventById: "{{route('user_get_event_by_id',['nungguin_ya?'])}}",
+        getLatesAd: "{{route('user_get_lates_ad')}}"
     }
 </script>
 <script src="{{asset('user/js/event.js')}}"></script>
+<script src="{{asset('user/js/ads.js')}}"></script>
 @endsection

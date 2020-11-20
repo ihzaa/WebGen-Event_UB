@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <img class="img-fluid" id="event_poster" src="{{asset('images/default/picture.svg')}}"
-                            alt="Poster Event" style="max-height: 350px;">
+                            alt="Poster Event">
                     </div>
                     <div class="col-md-8">
                         <h3 class="mb-1" id="event_title"></h3>
