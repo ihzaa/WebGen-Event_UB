@@ -1,6 +1,6 @@
 @extends('admin.template.master')
 
-@section('title','Kelola Event')
+@section('title','Kelola Advertisement')
 
 @section('css_after')
 <!-- DataTables -->
