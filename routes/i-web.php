@@ -22,6 +22,7 @@ Route::name('user_')->group(function () {
     Route::get('/', [HomeUserController::class, 'index'])->name('home');
     Route::get('/get/all/event', [HomeUserController::class, 'getAllEvent'])->name('get_all_event');
     Route::get('/get/event/by/cat/{id}', [HomeUserController::class, 'getEventByCategoryId'])->name('get_event_by_cat_id');
+    Route::get('/get/event/by/{id}', [HomeUserController::class, 'getEventById'])->name('get_event_by_id');
 });
 
 

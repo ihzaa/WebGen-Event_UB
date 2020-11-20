@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\categori;
 use App\Models\ad;
 use App\Models\event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeUserController extends Controller
 {
@@ -20,11 +22,15 @@ class HomeUserController extends Controller
     }
     public function getAllEvent()
     {
-        return response()->json(event::all());
+        return response()->json(event::where('date', '>=', Carbon::now())->orderBy('date', 'asc')->get(['id', 'title', 'poster', 'date']));
     }
     public function getEventByCategoryId($id)
     {
-        return response()->json(event::where('categori_id', $id)->get());
+        return response()->json(event::where('categori_id', $id)->where('date', '>=', Carbon::now())->orderBy('date', 'asc')->get(['id', 'title', 'poster', 'date']));
+    }
+    public function getEventById($id)
+    {
+        return response()->json(DB::select(DB::raw('SELECT `events`.`title`,`events`.`poster`,`events`.`desc`,`events`.`date`, (SELECT `categoris`.`name` FROM `categoris` WHERE `categoris`.`id` = `events`.`categori_id`) as `category` FROM `events` WHERE `events`.`id` = ' . $id))[0]);
     }
     public function advertisement()
     {
