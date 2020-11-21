@@ -49,7 +49,7 @@ const Event = {
         var html = "";
         data.forEach((element) => {
             html += `
-            <div class="col-md-4">
+            <div class="col-md-4 list-event">
                 <div class="card mb-4 shadow-sm">
                     <img class="img-responsive poster" data-src="${baseImgUrl}/${
                 element.poster

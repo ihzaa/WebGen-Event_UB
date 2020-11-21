@@ -45,10 +45,15 @@
                             <td>
                                 @php echo mb_strimwidth($d->desc, 0, 50, "...") @endphp</td>
                             <td class="text-center">
-                                <form action="{{route('admin_advertisement_delete', ['id'=>$d->id])}}" method="POST" class="d-inline">
+                                <!-- <form action="{{route('admin_advertisement_delete', ['id'=>$d->id])}}" method="POST" class="d-inline">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-sm btn-danger btn_delete_cat" name="hapus" type="submit" onclick=" return ConfirmDelete() " class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                </form> -->
+                                <form id="form-delete" action="{{route('admin_advertisement_delete',['id'=>$d->id])}}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-danger btn_delete_cat" name="hapus" id="button-delete" type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                 </form>
                                 <a href="{{route('admin_advertisement_edit', ['id'=>$d->id])}}" class="btn btn-sm btn-info btn_edit_cat" name="edit"><i class="fas fa-pencil-alt"></i></a>
                             </td>
@@ -103,13 +108,30 @@
     });
 </script>
 <script>
-    function ConfirmDelete() {
-        var x = confirm("Are you sure you want to delete?");
-        if (x)
-            return true;
-        else
-            return false;
-    }
+    // function ConfirmDelete() {
+    // var x = confirm("Are you sure you want to delete?");
+    // if (x)
+    //     return true;
+    // else
+    //     return false;
+
+    // $("#button-delete").on("click", function(event) {
+    //     event.preventDefault();
+    //     swal({
+    //         title: "Are you sure?",
+    //         text: "You will not be able to recover this lorem ipsum!",
+    //         type: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#DD6B55",
+    //         confirmButtonText: "Yes, delete it!",
+    //         closeOnConfirm: false
+    //     }.then((result) => {
+    //         if (result.value) {
+    //             $("#button-delete").submit();
+    //             return true
+    //         }
+    //     }));
+    // });
 </script>
 
 

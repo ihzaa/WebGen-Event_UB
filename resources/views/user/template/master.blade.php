@@ -8,6 +8,8 @@
     <title>{{config('app.name')}} | @yield('title')</title>
     @yield('css_before')
     <link rel="stylesheet" href="{{asset('user/css/bootstrap.min.css')}}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -47,7 +49,7 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-
+    <div id="start" name="start"></div>
     @include('user.template.navbar')
 
     <main role="main">
@@ -58,10 +60,52 @@
     @include('user.template.footer')
 
     @yield('js_before')
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <script src="{{asset('user/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        function ScrollTo(name) {
+            scrollPageTo(document.getElementById(name), 1000);
+        }
+
+        let scrollPageTo = (to, duration = 500) => {
+            const easeInOutQuad = function(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return (c / 2) * t * t + b;
+                t--;
+                return (-c / 2) * (t * (t - 2) - 1) + b;
+            };
+
+            return new Promise((resolve, reject) => {
+                const element = document.scrollingElement;
+
+                if (typeof to === "string") {
+                    to = document.querySelector(to) || reject();
+                }
+                if (typeof to !== "number") {
+                    to = to.getBoundingClientRect().top + element.scrollTop;
+                }
+
+                let start = element.scrollTop,
+                    change = to - start - 70,
+                    currentTime = 0,
+                    increment = 20;
+
+                const animateScroll = function() {
+                    currentTime += increment;
+                    let val = easeInOutQuad(currentTime, start, change, duration);
+                    element.scrollTop = val;
+                    if (currentTime < duration) {
+                        setTimeout(animateScroll, increment);
+                    } else {
+                        resolve();
+                    }
+                };
+                animateScroll();
+            });
+        };
+    </script>
     @yield('js_after')
 </body>
 

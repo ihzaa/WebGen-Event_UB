@@ -14,6 +14,7 @@
 @endsection
 
 @section('breadcrumb')
+<li class="breadcrumb-item active">Kelola Advertisement</li>
 <li class="breadcrumb-item active">Edit Advertisement</li>
 @endsection
 
@@ -109,6 +110,7 @@
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],

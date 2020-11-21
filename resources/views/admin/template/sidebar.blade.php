@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin_advertisement_index')}}" class="nav-link {{request()->is('*kelolaAdvertisement/*') ? 'active' : ''}}">
+                    <a href="{{route('admin_advertisement_index')}}" class="nav-link {{request()->is('*kelolaAdvertisement*') ? 'active' : ''}}">
                         <i class="nav-icon fas fa-ad"></i>
                         <p>
                             Kelola Advertisement
