@@ -62,6 +62,9 @@
                         <label for="summernote" style="font-size:18px;">Deskripsi</label>
                         @csrf
                         <textarea id="summernote" name="desc" class="form-control  background @error('desc') is-invalid @enderror">{{$data->desc}}</textarea>
+                        <div class="col-xs-12 text-right">
+                            <span id="maxContentPost">0</span><span> / 100</span>
+                        </div>
                         @error('desc')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -99,8 +102,8 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#summernote').summernote({
+    function registerSummernote(element, max, callbackMax) {
+        $(element).summernote({
             placeholder: 'Tulis Deskripsi Iklan Disini',
             tabsize: 4,
             height: 190,
@@ -108,6 +111,7 @@
             maxHeight: null,
             focus: true,
             toolbar: [
+
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
                 ['fontname', ['fontname']],
@@ -115,8 +119,41 @@
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
                 ['insert', ['link']],
-            ]
+            ],
+            callbacks: {
+                onKeydown: function(e) {
+                    var t = e.currentTarget.innerText;
+                    if (t.length >= 100) {
+                        //delete key
+                        if (e.keyCode != 8)
+                            e.preventDefault();
+                        // add other keys ...
+                    }
+                },
+                onKeyup: function(e) {
+                    var t = e.currentTarget.innerText;
+                    if (typeof callbackMax == 'function') {
+                        callbackMax(max - t.length);
+                    }
+                },
+                onPaste: function(e) {
+                    var t = e.currentTarget.innerText;
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    var all = t + bufferText;
+                    document.execCommand('insertText', false, all.trim().substring(0, 400));
+                    if (typeof callbackMax == 'function') {
+                        callbackMax(max - t.length);
+                    }
+                }
+            }
         });
+    }
+
+    $(document).ready(function() {
+        registerSummernote($('#summernote'), 100, function(max) {
+            $('#maxContentPost').text(max)
+        })
     });
 </script>
 
