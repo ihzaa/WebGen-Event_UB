@@ -62,7 +62,8 @@
                         <label for="summernote" style="font-size:18px;">Deskripsi</label>
                         @csrf
                         <textarea id="summernote" name="desc" class="form-control summernote background @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
-                        <div class="limit">
+                        <div class="col-xs-12 text-right">
+                            <span id="maxContentPost">0</span><span> / 100</span>
                         </div>
                         @error('desc')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -71,9 +72,7 @@
                             <button type="submit" class="btn btn-lg btn-success mt-3 ml-3">Simpan</button>
                         </div>
                     </div>
-                    <div class="col-xs-12 text-right">
-                        <span id="maxContentPost"></span>
-                    </div>
+
                 </div>
                 <!-- /.card-body -->
                 </form>
@@ -100,12 +99,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js" integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ==" crossorigin="anonymous"></script> -->
 
 <!-- summernote -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#summernote').summernote({
+    function registerSummernote(element, max, callbackMax) {
+        $(element).summernote({
             placeholder: 'Tulis Deskripsi Iklan Disini',
             tabsize: 4,
             height: 190,
@@ -132,24 +132,30 @@
                         // add other keys ...
                     }
                 },
-                // onKeyup: function(e) {
-                //     var t = e.currentTarget.innerText;
-                //     if (typeof callbackMax == 'function') {
-                //         callbackMax(max - t.length);
-                //     }
-                // },
+                onKeyup: function(e) {
+                    var t = e.currentTarget.innerText;
+                    if (typeof callbackMax == 'function') {
+                        callbackMax(max - t.length);
+                    }
+                },
                 onPaste: function(e) {
                     var t = e.currentTarget.innerText;
                     var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
                     e.preventDefault();
                     var all = t + bufferText;
                     document.execCommand('insertText', false, all.trim().substring(0, 400));
-                    // if (typeof callbackMax == 'function') {
-                    //     callbackMax(max - t.length);
-                    // }
+                    if (typeof callbackMax == 'function') {
+                        callbackMax(max - t.length);
+                    }
                 }
             }
         });
+    }
+
+    $(document).ready(function() {
+        registerSummernote($('#summernote'), 100, function(max) {
+            $('#maxContentPost').text(max)
+        })
     });
 </script>
 
@@ -171,12 +177,14 @@
     });
 </script>
 
+
 @error('desc')
 <script>
     $("#tambahGambar").form("show");
     // swal("PESAN", "sub pesan", "error");
 </script>
 @enderror
+
 
 
 
