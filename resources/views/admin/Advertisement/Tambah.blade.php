@@ -170,20 +170,14 @@
         readURL(this);
     });
 </script>
-<!-- 
-@if('desc')
-<script>
-    $("#tambahGambar").form("show");
-    // swal("PESAN", "sub pesan", "error");
-</script>
-@endif
 
-@if($errors->any())
+@error('desc')
 <script>
     $("#tambahGambar").form("show");
     // swal("PESAN", "sub pesan", "error");
 </script>
-@endif -->
+@enderror
+
 
 
 @endsection

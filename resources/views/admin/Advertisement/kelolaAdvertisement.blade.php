@@ -142,12 +142,22 @@
 
 @if(session('sukses_tambah'))
 <script>
-    swal("Good job!", "Data Berhasil Ditambah", "success");
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: 'Selamat Data Berhasil Ditambah',
+        // footer: '<a href>Why do I have this issue?</a>'
+    })
 </script>
 @endif
 @if(session('sukses_edit'))
 <script>
-    swal("Good job!", "Data Berhasil Diedit", "success");
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: 'Selamat Data Berhasil Diedit',
+        // footer: '<a href>Why do I have this issue?</a>'
+    })
 </script>
 @endif
 @if(session('sukses_delete'))
@@ -155,7 +165,7 @@
     Swal.fire({
         icon: 'success',
         title: 'Berhasil',
-        text: 'Selamat Data Berhasil dihapus',
+        text: 'Selamat Data Berhasil Dihapus',
         // footer: '<a href>Why do I have this issue?</a>'
     })
 </script>

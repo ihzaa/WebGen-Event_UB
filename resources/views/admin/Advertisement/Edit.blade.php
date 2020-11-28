@@ -149,12 +149,5 @@
 </script>
 @enderror
 
-<!-- @if($errors->any())
-<script>
-    $("#tambahGambar").form("show");
-    // swal("PESAN", "sub pesan", "error");
-</script>
-@endif -->
-
 
 @endsection
