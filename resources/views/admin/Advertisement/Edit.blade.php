@@ -121,9 +121,9 @@
 </script>
 
 <script>
-    $(document).ready(function() {
-        bsCustomFileInput.init()
-    })
+    // $(document).ready(function() {
+    //     bsCustomFileInput.init()
+    // })
 
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -142,19 +142,19 @@
     });
 </script>
 
-@if('desc')
+@error('desc')
 <script>
     $("#tambahGambar").form("show");
     // swal("PESAN", "sub pesan", "error");
 </script>
-@endif
+@enderror
 
-@if($errors->any())
+<!-- @if($errors->any())
 <script>
     $("#tambahGambar").form("show");
     // swal("PESAN", "sub pesan", "error");
 </script>
-@endif
+@endif -->
 
 
 @endsection

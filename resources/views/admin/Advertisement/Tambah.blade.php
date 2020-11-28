@@ -61,13 +61,18 @@
                     <div class="col-lg-12 col-md-12 justify-content-center">
                         <label for="summernote" style="font-size:18px;">Deskripsi</label>
                         @csrf
-                        <textarea id="summernote" name="desc" class="form-control  background @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                        <textarea id="summernote" name="desc" class="form-control summernote background @error('desc') is-invalid @enderror">{{old('desc')}}</textarea>
+                        <div class="limit">
+                        </div>
                         @error('desc')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-lg btn-success mt-3 ml-3">Simpan</button>
                         </div>
+                    </div>
+                    <div class="col-xs-12 text-right">
+                        <span id="maxContentPost"></span>
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -108,6 +113,7 @@
             maxHeight: null,
             focus: true,
             toolbar: [
+
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
                 ['fontname', ['fontname']],
@@ -115,16 +121,39 @@
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
                 ['insert', ['link']],
-            ]
+            ],
+            callbacks: {
+                onKeydown: function(e) {
+                    var t = e.currentTarget.innerText;
+                    if (t.length >= 100) {
+                        //delete key
+                        if (e.keyCode != 8)
+                            e.preventDefault();
+                        // add other keys ...
+                    }
+                },
+                // onKeyup: function(e) {
+                //     var t = e.currentTarget.innerText;
+                //     if (typeof callbackMax == 'function') {
+                //         callbackMax(max - t.length);
+                //     }
+                // },
+                onPaste: function(e) {
+                    var t = e.currentTarget.innerText;
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    var all = t + bufferText;
+                    document.execCommand('insertText', false, all.trim().substring(0, 400));
+                    // if (typeof callbackMax == 'function') {
+                    //     callbackMax(max - t.length);
+                    // }
+                }
+            }
         });
     });
 </script>
 
 <script>
-    $(document).ready(function() {
-        bsCustomFileInput.init()
-    })
-
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -141,7 +170,7 @@
         readURL(this);
     });
 </script>
-
+<!-- 
 @if('desc')
 <script>
     $("#tambahGambar").form("show");
@@ -154,7 +183,7 @@
     $("#tambahGambar").form("show");
     // swal("PESAN", "sub pesan", "error");
 </script>
-@endif
+@endif -->
 
 
 @endsection

@@ -50,10 +50,10 @@
                                     @csrf
                                     <button class="btn btn-sm btn-danger btn_delete_cat" name="hapus" type="submit" onclick=" return ConfirmDelete() " class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                 </form> -->
-                                <form id="form-delete" action="{{route('admin_advertisement_delete',['id'=>$d->id])}}" method="POST" class="d-inline">
+                                <form action="{{route('admin_advertisement_delete',['id'=>$d->id])}}" method="POST" class="form-hapus d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-danger btn_delete_cat" name="hapus" id="button-delete" type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-danger btn_delete_cat" name="hapus" type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                 </form>
                                 <a href="{{route('admin_advertisement_edit', ['id'=>$d->id])}}" class="btn btn-sm btn-info btn_edit_cat" name="edit"><i class="fas fa-pencil-alt"></i></a>
                             </td>
@@ -84,7 +84,7 @@
 @section('js_after')
 <!-- DataTables -->
 <script src="{{asset('admin/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
@@ -115,23 +115,28 @@
     // else
     //     return false;
 
-    // $("#button-delete").on("click", function(event) {
-    //     event.preventDefault();
-    //     swal({
-    //         title: "Are you sure?",
-    //         text: "You will not be able to recover this lorem ipsum!",
-    //         type: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#DD6B55",
-    //         confirmButtonText: "Yes, delete it!",
-    //         closeOnConfirm: false
-    //     }.then((result) => {
-    //         if (result.value) {
-    //             $("#button-delete").submit();
-    //             return true
-    //         }
-    //     }));
-    // });
+    $(".form-hapus").on("submit", function(event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Yakin Ingin Menghapus?',
+            icon: 'question',
+            // text: 'test',
+            // showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: `Hapus!`,
+            cancelButtonText: `Batal`,
+
+
+        }).then((result) => {
+            // console.log(result);
+            /* Read more about isConfirmed, isDenied below */
+            if (result.value) {
+                // Swal.fire('Berhasil di hapus', '', 'success')
+                // console.log($(this)[0]);
+                $(this)[0].submit();
+            }
+        });
+    });
 </script>
 
 
@@ -147,7 +152,12 @@
 @endif
 @if(session('sukses_delete'))
 <script>
-    swal("Good job!", "Data Berhasil Dihapus", "success");
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: 'Selamat Data Berhasil dihapus',
+        // footer: '<a href>Why do I have this issue?</a>'
+    })
 </script>
 @endif
 @endsection

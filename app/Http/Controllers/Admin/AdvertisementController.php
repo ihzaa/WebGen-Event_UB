@@ -134,6 +134,6 @@ class AdvertisementController extends Controller
         $data = ad::find($id);
         ad::destroy($data->id);
         File::delete($data->image);
-        return redirect(route('admin_advertisement_index'))->with('success', 'Data Berhasil di delete');
+        return redirect(route('admin_advertisement_index'))->with('sukses_delete', 'Data Berhasil di delete');
     }
 }
