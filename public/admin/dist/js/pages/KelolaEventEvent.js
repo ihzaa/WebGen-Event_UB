@@ -38,7 +38,7 @@ const Event = {
                 <tr ${dateNow.isAfter(el.date) ? 'class="bg-dark"':''}>
                     <td>${i++}</td>
                     <td>${el.title}</td>
-                    <td><img class="lazyload img-fluid" data-src="${storagePath}/${
+                    <td><img class="lazyload img-fluid" data-src="${storagePath}${
                 el.poster
             }"></td>
                     <td>${date}</td>

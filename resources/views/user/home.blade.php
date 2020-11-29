@@ -110,7 +110,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/id.min.js" integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ==" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
 <script>
-    const baseImgUrl = "{{asset('storage')}}";
+    const baseImgUrl = "{{asset('')}}";
     const baseImgUrlAds = "{{asset('')}}";
     const URL = {
         allEvent: "{{route('user_get_all_event')}}",

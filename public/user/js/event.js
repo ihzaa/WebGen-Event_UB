@@ -51,7 +51,7 @@ const Event = {
             html += `
             <div class="col-md-4 list-event">
                 <div class="card mb-4 shadow-sm">
-                    <img class="img-responsive poster" data-src="${baseImgUrl}/${
+                    <img class="img-responsive poster" data-src="${baseImgUrl}${
                 element.poster
             }" style="object-fit: cover !important;max-height:200px;" alt="">
                     <div class="card-body">
@@ -102,7 +102,7 @@ const Event = {
         fetch(URL.getEventById.replace("nungguin_ya?", id))
             .then((resp) => resp.json())
             .then((data) => {
-                $("#event_poster").attr("src", baseImgUrl + "/" + data.poster);
+                $("#event_poster").attr("src", baseImgUrl + "" + data.poster);
                 $("#event_title").html(data.title);
                 $("#event_date").html(
                     moment(data.date, "YYYY-M-D HH:mm:ss").format(
