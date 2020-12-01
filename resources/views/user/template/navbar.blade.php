@@ -11,10 +11,10 @@
                 <div class="col-sm-4 offset-md-1 py-4">
                     <h4 class="text-white">Contact</h4>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white"><i style="width: 30px; height:30px;" class="fab fa-facebook-square"></i> Facebook</a></li>
-                        <li><a href="#" class="text-white"><i style="width: 30px; height:30px;" class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://line.me/R/nv/recommendOA/Ryzx" target="_blank" class="text-white"><i style="width: 30px; height:30px;" class="fab fa-facebook-square"></i> Facebook</a></li>
+                        <li><a href="https://instagram.com/webgen2020?igshid=15kmm9bz09dw2" target="_blank" class="text-white"><i style="width: 30px; height:30px;" class="fab fa-instagram"></i> Instagram</a></li>
                         <li><a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=webgen35@gmail.com" target="_blank" class=" text-white"><i style="width: 30px; height:30px;" class="far fa-envelope"></i> Email</a></li>
-                        <li><a href="#" class="text-white"><i style="width: 30px; height:30px;" class="fab fa-whatsapp"></i> Whatsapp</a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=+628977337498" target="_blank" class="text-white"><i style="width: 30px; height:30px;" class="fab fa-whatsapp"></i> Whatsapp</a></li>
                     </ul>
                 </div>
             </div>

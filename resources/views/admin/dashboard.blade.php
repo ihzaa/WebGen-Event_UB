@@ -75,7 +75,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Event Count</span>
                     <span class="info-box-number">
-
+                        {{$data['event']}}
                     </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -90,7 +90,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Category Count</span>
                     <span class="info-box-number">
-
+                        {{$data['category']}}
                     </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -99,13 +99,13 @@
         <!-- /.info-box -->
     </div>
     <div class="col-12 col-sm-6 col-md-4 text-center justify-content-center">
-        <a href="#" style="color: white; font-size:25px; text-shadow:2px solid blue;">
+        <a href="{{route('admin_advertisement_index')}}" style="color: white; font-size:25px; text-shadow:2px solid blue;">
             <div class="info-box advertisement">
                 <span style="width: 100px;" class="info-box-icon bg-info elevation-1"><i class="fab fa-blogger-b"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Advertisement</span>
                     <span class="info-box-number">
-
+                        {{$data['ad']}}
                     </span>
                 </div>
             </div>

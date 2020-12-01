@@ -12,7 +12,12 @@
         background-color: rgba(0, 0, 0, .05);
     }
 
-    .list-event:hover {
+    .card-event {
+        /* display: inline-block; */
+        overflow: hidden;
+    }
+
+    .list-event img:hover {
         -moz-transform: scale(1.05);
         -webkit-transform: scale(1.05);
         -o-transform: scale(1.05);
@@ -44,6 +49,12 @@
         background-color: grey;
         color: white;
         opacity: 1;
+    }
+
+    .list-event img {
+        min-height: 200px;
+        /* object-fit: cover; */
+        display: block;
     }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.css" integrity="sha512-QmxybGIvkSI8+CGxkt5JAcGOKIzHDqBMs/hdemwisj4EeGLMXxCm9h8YgoCwIvndnuN1NdZxT4pdsesLXSaKaA==" crossorigin="anonymous" />

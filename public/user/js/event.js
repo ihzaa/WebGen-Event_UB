@@ -50,7 +50,7 @@ const Event = {
         data.forEach((element) => {
             html += `
             <div class="col-md-4 list-event">
-                <div class="card mb-4 shadow-sm">
+                <div class="card card-event mb-4 shadow-sm">
                     <img class="img-responsive poster" data-src="${baseImgUrl}${
                 element.poster
             }" style="object-fit: cover !important;max-height:200px;" alt="">
