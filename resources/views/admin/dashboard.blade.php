@@ -62,16 +62,18 @@
 <div class="row justify-content-center welcome-title">
     <div class="col-md-10 col-lg-10">
         <h1 class="text-center">Selamat Datang Admin <br>
-            Website Web-Gen, <span> Semoga Harimu Menyenangkan <i style="color: grey;" class="fas fa-smile-wink"></i></span>
+            Website Web-Gen, <span> Semoga Harimu Menyenangkan <i style="color: grey;"
+                    class="fas fa-smile-wink"></i></span>
         </h1>
     </div>
     <div class="garis text-center"></div>
 </div>
 <div class="row justify-content-center card-info">
     <div class="col-12 col-sm-6 col-md-4 text-center justify-content-center">
-        <a style="color: white; font-size:25px;" href="#">
+        <a style="color: white; font-size:25px;" href="{{route('admin_kelola_event_index')}}">
             <div class="info-box event">
-                <span style="width: 100px;" class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar-week"></i></span>
+                <span style="width: 100px;" class="info-box-icon bg-danger elevation-1"><i
+                        class="fas fa-calendar-week"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Event Count</span>
                     <span class="info-box-number">
@@ -84,9 +86,10 @@
         <!-- /.info-box -->
     </div>
     <div class="col-12 col-sm-6 col-md-4 text-center justify-content-center">
-        <a href="#" style="color: white; font-size:25px;">
+        <a href="{{route('admin_kelola_event_index')}}" style="color: white; font-size:25px;">
             <div class="info-box kategori">
-                <span style="width: 100px;" class="info-box-icon bg-success elevation-1"><i class="far fa-copyright"></i></span>
+                <span style="width: 100px;" class="info-box-icon bg-success elevation-1"><i
+                        class="far fa-copyright"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Category Count</span>
                     <span class="info-box-number">
@@ -99,9 +102,11 @@
         <!-- /.info-box -->
     </div>
     <div class="col-12 col-sm-6 col-md-4 text-center justify-content-center">
-        <a href="{{route('admin_advertisement_index')}}" style="color: white; font-size:25px; text-shadow:2px solid blue;">
+        <a href="{{route('admin_advertisement_index')}}"
+            style="color: white; font-size:25px; text-shadow:2px solid blue;">
             <div class="info-box advertisement">
-                <span style="width: 100px;" class="info-box-icon bg-info elevation-1"><i class="fab fa-blogger-b"></i></span>
+                <span style="width: 100px;" class="info-box-icon bg-info elevation-1"><i
+                        class="fab fa-blogger-b"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Advertisement</span>
                     <span class="info-box-number">
