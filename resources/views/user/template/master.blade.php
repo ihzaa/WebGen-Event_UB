@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{config('app.name')}} | @yield('title')</title>
+    <link rel="icon" href="{{asset('images/default/logo 2/LOGO SQUARE PNG 16x16 white.png')}}" style="background-color: white; border-radius : 50%;" type="image/png" sizes="16x16">
+    <!-- <link rel="icon" href="{{asset('images/default/logo 2/LOGO SQUARE PNG (1) 32x32.png')}}" type="image/png" sizes="32x32"> -->
+    <link rel="apple-touch-icon" href="{{asset('images/default/logo 2/LOGO SQUARE PNG 16x16 white.png')}}" style="background-color: white; border-radius : 50%;" type="image/png" sizes="16x16">
+    <!-- <link rel="apple-touch-icon" href="{{asset('images/default/logo 2/LOGO  SQUARE PNG (1) 32x32.png')}}" type="image/png" sizes="32x32"> -->
+    <!-- Tell the browser to be responsive to screen width -->
+
     @yield('css_before')
     <link rel="stylesheet" href="{{asset('user/css/bootstrap.min.css')}}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">

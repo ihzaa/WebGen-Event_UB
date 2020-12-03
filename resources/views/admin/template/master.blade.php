@@ -11,6 +11,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Admin {{config('app.name')}} | @yield('title')</title>
+    <link rel="icon" href="{{asset('images/default/logo 2/LOGO SQUARE PNG 16x16 white.png')}}" style="background-color: white; border-radius : 50%;" type="image/png" sizes="16x16">
+    <!-- <link rel="icon" href="{{asset('images/default/logo 2/LOGO SQUARE PNG (1) 32x32.png')}}" type="image/png" sizes="32x32"> -->
+    <link rel="apple-touch-icon" href="{{asset('images/default/logo 2/LOGO SQUARE PNG 16x16 white.png')}}" style="background-color: white; border-radius : 50%;" type="image/png" sizes="16x16">
     @yield('css_before')
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
